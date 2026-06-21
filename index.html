@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Konoba Pjero — Petrčane · 35+ godina tradicije</title>
+<meta name="description" content="Konoba Pjero, Petrčane — obiteljska konoba od 1989. godine. 35 godina autentične dalmatinske kuhinje uz borove uvale i jadransko more između Zadra i Nina." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --parchment:#F7F2E6;
+    --parchment-2:#EDE8D8;
+    --parchment-3:#E5DEC8;
+    --ink:#2E2A22;
+    --ink-soft:#4A453C;
+    --olive:#4E5E38;
+    --olive-soft:#6B7C52;
+    --olive-pale:#A8B890;
+    --gold:#B89540;
+    --gold-soft:#CBA855;
+    --terra:#A0603A;
+    --stone:#9A8E7A;
+    --line:rgba(46,42,34,.14);
+    --font-display:'Cormorant Garamond', Georgia, serif;
+    --font-body:'Spectral', Georgia, serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    font-family:var(--font-body);
+    font-size:17px;
+    line-height:1.78;
+    color:var(--ink);
+    background:var(--parchment);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 36px;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.07;}
+  .eyebrow{
+    font-family:var(--font-body);text-transform:uppercase;
+    font-size:11px;letter-spacing:0.26em;font-weight:500;color:var(--terra);
+  }
+
+  /* grain overlay */
+  body::before{
+    content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
+    opacity:0.055;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  header.site,main,footer.site{position:relative;z-index:2;}
+
+  /* ─── HEADER ─────────────────────────────────────────── */
+  header.site{
+    position:fixed;top:0;left:0;width:100%;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:24px 36px;
+    transition:background .5s ease, padding .5s ease, box-shadow .5s ease;
+  }
+  header.site.scrolled{
+    background:rgba(247,242,230,.95);
+    backdrop-filter:blur(8px);
+    padding:15px 36px;
+    box-shadow:0 1px 0 var(--line);
+  }
+  .brand{font-family:var(--font-display);font-size:24px;letter-spacing:0.03em;color:var(--ink);}
+  .brand em{font-style:italic;color:var(--olive);}
+  .brand .year{
+    font-family:var(--font-body);font-size:11px;font-weight:400;
+    text-transform:uppercase;letter-spacing:0.2em;color:var(--gold);
+    display:block;margin-top:2px;
+  }
+  nav.main{display:flex;gap:30px;align-items:center;}
+  nav.main a{
+    text-transform:uppercase;font-size:11px;letter-spacing:0.16em;
+    color:var(--ink);opacity:.7;transition:opacity .3s ease;font-family:var(--font-body);
+  }
+  nav.main a:hover{opacity:1;}
+  .btn{
+    display:inline-block;border:1.5px solid var(--olive);color:var(--olive);
+    text-transform:uppercase;font-size:11px;letter-spacing:0.16em;
+    padding:11px 20px;border-radius:2px;
+    transition:background .3s ease, color .3s ease;font-family:var(--font-body);
+  }
+  .btn:hover{background:var(--olive);color:var(--parchment);}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;z-index:120;}
+  .hamburger span{display:block;width:26px;height:2px;background:var(--ink);transition:transform .35s ease, opacity .35s ease;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .mobile-menu{
+    position:fixed;inset:0;z-index:110;background:var(--parchment);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+    opacity:0;pointer-events:none;transition:opacity .5s ease;
+  }
+  .mobile-menu.open{opacity:1;pointer-events:all;}
+  .mobile-menu a{font-family:var(--font-display);font-size:32px;color:var(--ink);padding:8px 0;}
+  .mobile-menu a.italic{font-style:italic;color:var(--olive);font-size:24px;margin-top:16px;}
+
+  /* ─── OLIVE RULE DIVIDER ─────────────────────────────── */
+  .olive-rule{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    margin:0 auto 36px;color:var(--olive-pale);
+  }
+  .olive-rule svg{width:54px;height:16px;}
+  .olive-rule span{height:1px;width:60px;background:linear-gradient(90deg,transparent,var(--olive-pale));}
+  .olive-rule span:last-child{background:linear-gradient(90deg,var(--olive-pale),transparent);}
+
+  /* ─── HERO — editorial grid ──────────────────────────── */
+  .hero{padding:140px 0 96px;}
+  .hero-top{text-align:center;max-width:900px;margin:0 auto 56px;}
+  .hero-top .eyebrow{display:block;margin-bottom:28px;}
+  .hero-top h1{
+    font-size:clamp(44px,7.5vw,100px);line-height:1.02;
+    color:var(--ink);letter-spacing:-0.01em;
+  }
+  .hero-top h1 em{font-style:italic;color:var(--olive);}
+  .hero-top .tagline{
+    margin-top:26px;font-family:var(--font-display);font-style:italic;
+    font-size:clamp(18px,2.4vw,25px);color:var(--stone);line-height:1.45;
+  }
+  .hero-since{
+    display:inline-flex;align-items:center;gap:10px;
+    margin-top:26px;padding:10px 24px;
+    border:1px solid var(--gold);border-radius:30px;
+    color:var(--gold);text-transform:uppercase;font-size:11px;letter-spacing:0.2em;
+    font-family:var(--font-body);
+  }
+
+  /* editorial 4-image grid */
+  .hero-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:240px;gap:12px;}
+  .hero-grid figure{overflow:hidden;border-radius:2px;}
+  .hero-grid img{
+    width:100%;height:100%;object-fit:cover;
+    filter:sepia(.2) contrast(1.05) saturate(.9);
+    transition:transform 1.2s cubic-bezier(.2,.7,.2,1);
+    will-change:transform;
+  }
+  .hero-grid figure:hover img{transform:scale(1.05);}
+  .hg-1{grid-column:span 2;grid-row:span 2;}
+  .hg-2{grid-column:span 2;}
+  .hg-3{grid-column:span 1;}
+  .hg-4{grid-column:span 1;}
+
+  section{position:relative;}
+  .section-pad{padding:112px 0;}
+  .alt{background:var(--parchment-2);}
+  .alt-3{background:var(--parchment-3);}
+  .reveal{opacity:0;transform:translateY(22px);}
+
+  /* ─── MANIFEST ───────────────────────────────────────── */
+  .manifest{text-align:center;}
+  .manifest .eyebrow{display:block;margin-bottom:22px;}
+  .manifest p.lead{
+    font-family:var(--font-display);font-size:clamp(26px,3.6vw,44px);
+    line-height:1.38;max-width:20ch;margin:0 auto 26px;color:var(--ink);
+  }
+  .manifest p.lead em{font-style:italic;color:var(--olive);}
+  .manifest p.body{max-width:580px;margin:0 auto;color:var(--ink-soft);line-height:1.82;}
+
+  /* ─── HERITAGE COUNT-UP ──────────────────────────────── */
+  .heritage-strip{
+    background:var(--olive);color:var(--parchment);
+    text-align:center;padding:72px 0;
+  }
+  .heritage-strip .inner{display:flex;justify-content:center;align-items:center;gap:80px;flex-wrap:wrap;}
+  .hstat{text-align:center;}
+  .hstat .num{
+    font-family:var(--font-display);font-style:italic;
+    font-size:clamp(56px,8vw,96px);line-height:1;color:var(--parchment);
+  }
+  .hstat .num .sup{font-size:.5em;vertical-align:super;font-style:normal;color:var(--gold-soft);}
+  .hstat .label{
+    margin-top:10px;text-transform:uppercase;letter-spacing:0.22em;
+    font-size:11px;opacity:.75;font-family:var(--font-body);
+  }
+  .hstat-divider{width:1px;height:80px;background:rgba(247,242,230,.22);}
+
+  /* ─── TIMELINE ───────────────────────────────────────── */
+  .tl-head{text-align:center;margin-bottom:66px;}
+  .tl-head h2{font-size:clamp(34px,5vw,58px);margin-top:14px;color:var(--ink);}
+  .timeline{max-width:780px;margin:0 auto;position:relative;}
+  .timeline::before{
+    content:'';position:absolute;left:110px;top:8px;bottom:8px;
+    width:1px;background:var(--line);
+  }
+  .tl-item{display:grid;grid-template-columns:110px 1fr;gap:34px;padding:20px 0;align-items:baseline;}
+  .tl-item .yr{
+    font-family:var(--font-display);font-style:italic;
+    font-size:28px;color:var(--terra);text-align:right;position:relative;
+  }
+  .tl-item .yr::after{
+    content:'';position:absolute;right:-37px;top:13px;
+    width:9px;height:9px;border-radius:50%;background:var(--olive);
+  }
+  .tl-item .body h3{font-size:22px;color:var(--ink);margin-bottom:5px;}
+  .tl-item .body p{color:var(--ink-soft);font-size:15.5px;max-width:46ch;line-height:1.62;}
+
+  /* ─── MENU ───────────────────────────────────────────── */
+  .menu-head{text-align:center;margin-bottom:56px;}
+  .menu-head h2{font-size:clamp(34px,5vw,56px);margin-top:14px;color:var(--ink);}
+  .menu-head .sub{margin-top:16px;font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--stone);max-width:44ch;margin-left:auto;margin-right:auto;}
+  .menu-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px 64px;}
+  .menu-category{margin-bottom:46px;}
+  .menu-category h3{
+    font-family:var(--font-body);font-size:11px;font-weight:500;
+    letter-spacing:0.26em;text-transform:uppercase;color:var(--olive-soft);
+    border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:20px;
+  }
+  .m-item{padding:15px 0;border-bottom:1px dashed var(--line);}
+  .m-item:last-child{border-bottom:none;}
+  .m-item .t{font-family:var(--font-display);font-size:22px;color:var(--ink);}
+  .m-item .t em{font-style:italic;color:var(--olive-soft);font-size:16px;margin-left:8px;}
+  .m-item .d{font-size:14.5px;color:var(--stone);margin-top:4px;line-height:1.5;}
+  .menu-foot{
+    text-align:center;margin-top:46px;
+    font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--stone);
+  }
+
+  /* ─── LOCATION ───────────────────────────────────────── */
+  .loc-split{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;}
+  .loc-img-side{overflow:hidden;}
+  .loc-img-side img{width:100%;height:100%;object-fit:cover;filter:sepia(.15) contrast(1.04) saturate(.92);}
+  .loc-text-side{padding:80px 64px;display:flex;flex-direction:column;justify-content:center;background:var(--parchment-2);}
+  .loc-text-side .eyebrow{display:block;margin-bottom:22px;}
+  .loc-text-side h2{font-size:clamp(30px,4vw,52px);margin-bottom:22px;color:var(--ink);}
+  .loc-text-side h2 em{font-style:italic;color:var(--olive);}
+  .loc-text-side p{color:var(--ink-soft);line-height:1.8;margin-bottom:18px;max-width:46ch;}
+
+  /* ─── GALLERY ────────────────────────────────────────── */
+  .gallery-head{text-align:center;margin-bottom:54px;}
+  .gallery-head h2{font-size:clamp(32px,4.8vw,56px);margin-top:12px;}
+  .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .gal-grid figure{overflow:hidden;border-radius:2px;}
+  .gal-grid img{
+    width:100%;height:280px;object-fit:cover;
+    filter:sepia(.22) contrast(1.06) saturate(.88);
+    transition:transform 1.1s cubic-bezier(.2,.7,.2,1), filter .5s ease;
+    will-change:transform;
+  }
+  .gal-grid figure:hover img{transform:scale(1.06);filter:sepia(.08) contrast(1.06) saturate(.95);}
+  .gal-wide{grid-column:span 2;}
+  .gal-wide img{height:320px;}
+  .gal-tall img{height:610px;}
+
+  /* ─── QUOTE ──────────────────────────────────────────── */
+  .quote-sec{background:var(--gold);color:var(--parchment);text-align:center;padding:90px 0;}
+  .quote-sec blockquote{
+    font-family:var(--font-display);font-style:italic;
+    font-size:clamp(24px,4vw,46px);line-height:1.32;
+    max-width:18ch;margin:0 auto;
+  }
+  .quote-sec .by{
+    margin-top:26px;text-transform:uppercase;letter-spacing:0.22em;
+    font-size:10px;opacity:.78;font-family:var(--font-body);
+  }
+
+  /* ─── KONTAKT ────────────────────────────────────────── */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:3px;overflow:hidden;}
+  .contact-info{padding:64px 56px;}
+  .contact-info .eyebrow{display:block;margin-bottom:20px;}
+  .contact-info h2{font-size:clamp(30px,4.2vw,50px);margin-bottom:22px;color:var(--ink);}
+  .contact-info h2 em{font-style:italic;color:var(--olive);}
+  .contact-info p{color:var(--ink-soft);margin-bottom:18px;max-width:40ch;line-height:1.75;}
+  .contact-tel{
+    display:inline-flex;align-items:center;gap:12px;
+    font-family:var(--font-display);font-size:28px;color:var(--olive);
+    margin-bottom:12px;
+  }
+  .contact-tel:hover{color:var(--terra);}
+  .contact-note{font-size:13.5px;color:var(--stone);font-style:italic;font-family:var(--font-display);}
+  .contact-hours{background:var(--parchment-2);padding:64px 56px;}
+  .contact-hours h3{
+    font-family:var(--font-display);font-style:italic;font-size:24px;
+    color:var(--olive);margin-bottom:22px;
+  }
+  .hours-row{
+    display:flex;justify-content:space-between;padding:11px 0;
+    border-bottom:1px solid var(--line);font-size:15px;color:var(--ink-soft);
+  }
+  .hours-row:last-of-type{border-bottom:none;}
+  .hours-row span:last-child{color:var(--stone);font-variant-numeric:tabular-nums;}
+  .hours-note{margin-top:18px;font-family:var(--font-display);font-style:italic;font-size:16px;color:var(--stone);}
+  .map-wrap{margin-top:20px;height:260px;border:1px solid var(--line);border-radius:3px;overflow:hidden;}
+  .map-wrap iframe{width:100%;height:100%;border:0;filter:grayscale(.35) sepia(.16);}
+
+  /* ─── FOOTER ─────────────────────────────────────────── */
+  footer.site{background:var(--ink);color:var(--parchment);padding:72px 0 36px;}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:44px;padding-bottom:48px;border-bottom:1px solid rgba(247,242,230,.12);}
+  .foot-brand .brand{color:var(--parchment);font-size:26px;margin-bottom:14px;}
+  .foot-brand .brand em{color:var(--olive-pale);}
+  .foot-brand p{opacity:.65;max-width:30ch;font-size:15px;line-height:1.7;}
+  .foot-col h4{text-transform:uppercase;font-size:11px;letter-spacing:0.18em;opacity:.5;margin-bottom:16px;font-family:var(--font-body);}
+  .foot-col a,.foot-col p{display:block;opacity:.72;font-size:15px;margin-bottom:10px;}
+  .foot-col a:hover{opacity:1;color:var(--olive-pale);}
+  .foot-bottom{padding-top:28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;opacity:.48;}
+
+  /* ─── MOBILE BAR ─────────────────────────────────────── */
+  .mobile-bar{
+    position:fixed;left:0;bottom:0;width:100%;z-index:90;
+    display:none;padding:12px 16px;
+    background:rgba(247,242,230,.97);backdrop-filter:blur(8px);
+    border-top:1px solid var(--line);
+  }
+  .mobile-bar a{
+    display:block;text-align:center;background:var(--olive);color:var(--parchment);
+    text-transform:uppercase;font-size:12px;letter-spacing:0.15em;font-weight:600;
+    padding:15px;border-radius:3px;font-family:var(--font-body);
+  }
+
+  /* ─── RESPONSIVE ─────────────────────────────────────── */
+  @media(max-width:980px){
+    nav.main{display:none;}
+    .hamburger{display:flex;}
+    .hero-grid{grid-auto-rows:190px;}
+    .loc-split{grid-template-columns:1fr;}
+    .loc-img-side{height:320px;}
+    .contact-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .foot-brand{grid-column:1/-1;}
+    .timeline::before{left:80px;}
+    .tl-item{grid-template-columns:80px 1fr;gap:26px;}
+    .tl-item .yr{font-size:24px;}
+    .tl-item .yr::after{right:-28px;}
+  }
+  @media(max-width:768px){
+    .wrap{padding:0 22px;}
+    .section-pad{padding:76px 0;}
+    .hero{padding:120px 0 72px;}
+    .hero-grid{grid-template-columns:1fr 1fr;grid-auto-rows:150px;}
+    .hg-1{grid-column:span 2;grid-row:span 1;}
+    .hg-2{grid-column:span 2;}
+    .menu-cols{grid-template-columns:1fr;}
+    .gal-grid{grid-template-columns:1fr 1fr;}
+    .gal-wide{grid-column:span 2;}
+    .gal-tall img{height:280px;}
+    .heritage-strip .inner{gap:44px;}
+    .hstat-divider{display:none;}
+    .contact-info,.contact-hours{padding:44px 28px;}
+    .mobile-bar{display:block;}
+    footer.site{padding-bottom:90px;}
+    .loc-text-side{padding:48px 28px;}
+  }
+  @media(max-width:480px){
+    .foot-grid{grid-template-columns:1fr;}
+    .gal-grid{grid-template-columns:1fr;}
+    .gal-wide{grid-column:span 1;}
+    .hero-grid{grid-template-columns:1fr 1fr;grid-auto-rows:130px;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation-duration:0.001ms!important;transition-duration:0.001ms!important;}
+    .reveal{opacity:1!important;transform:none!important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─────────────────────────────────────────────── -->
+<header class="site" id="header">
+  <a class="brand" href="#vrh">Konoba <em>Pjero</em><span class="year">od 1989.</span></a>
+  <nav class="main">
+    <a href="#tradicija">Tradicija</a>
+    <a href="#jelovnik">Jelovnik</a>
+    <a href="#petrcane">Petrčane</a>
+    <a href="#galerija">Galerija</a>
+    <a href="#kontakt">Kontakt</a>
+    <a class="btn" href="tel:+385958224816">Rezerviraj</a>
+  </nav>
+  <button class="hamburger" id="hamburger" aria-label="Izbornik">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#tradicija">Tradicija</a>
+  <a href="#jelovnik">Jelovnik</a>
+  <a href="#petrcane">Petrčane</a>
+  <a href="#galerija">Galerija</a>
+  <a href="#kontakt">Kontakt</a>
+  <a class="italic" href="tel:+385958224816">Rezerviraj stol →</a>
+</div>
+
+<main>
+
+<!-- ─── HERO — editorial 4-image grid + light ─────────────── -->
+<section class="hero" id="vrh">
+  <div class="wrap">
+    <div class="hero-top reveal">
+      <span class="eyebrow">Petrčane · Dalmatinska kuhinja</span>
+      <h1>Obiteljska <em>tradicija</em><br>od 1989.</h1>
+      <p class="tagline">Iste ruke. Iste recepture. Trideset i pet ljetica uz more.</p>
+      <span class="hero-since" id="sinceCounter">od 1989. · <strong id="yearsCount">35</strong> godina</span>
+    </div>
+    <div class="hero-grid">
+      <figure class="hg-1 reveal">
+        <img src="https://loremflickr.com/860/500/dalmatia,konoba,family,lunch?lock=2001" alt="Obiteljska konoba Pjero — ručak" />
+      </figure>
+      <figure class="hg-2 reveal">
+        <img src="https://loremflickr.com/420/240/adriatic,sunset,petrcane?lock=2002" alt="Petrčane — pogled na more" />
+      </figure>
+      <figure class="hg-3 reveal">
+        <img src="https://loremflickr.com/205/240/grilled,fish,dalmatia?lock=2003" alt="Riba s gradela" />
+      </figure>
+      <figure class="hg-4 reveal">
+        <img src="https://loremflickr.com/205/240/pine,coast,adriatic?lock=2004" alt="Borovi uz obalu" />
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MANIFEST ─────────────────────────────────────────── -->
+<section class="section-pad manifest alt" id="manifest">
+  <div class="wrap">
+    <div class="olive-rule reveal" aria-hidden="true">
+      <span></span>
+      <svg viewBox="0 0 54 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27 2C20 2 8 8 2 8C8 8 20 14 27 14C34 14 46 8 52 8C46 8 34 2 27 2Z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+      </svg>
+      <span></span>
+    </div>
+    <span class="eyebrow reveal">Naš manifest</span>
+    <p class="lead reveal">Kuhamo onako kako su nas <em>naučili.</em></p>
+    <p class="body reveal">Konoba Pjero nije restoran koji se mijenja sa sezonama. Mi smo ona konoba koja je uvijek tu — godinama iste tablice, iste porculanske ploče, isti miris ribe na žaru koji izlazi iz kuhinje i hvata vas već na ulici. Obitelj koja kuha i obitelj koja dolazi jesti. To je naša formula.</p>
+  </div>
+</section>
+
+<!-- ─── HERITAGE COUNT-UP STRIP ───────────────────────────── -->
+<div class="heritage-strip">
+  <div class="inner">
+    <div class="hstat">
+      <div class="num"><span id="countYear" data-target="1989">1989</span></div>
+      <div class="label">Godina osnivanja</div>
+    </div>
+    <div class="hstat-divider"></div>
+    <div class="hstat">
+      <div class="num"><span id="countYears" data-target="35">35</span><span class="sup">+</span></div>
+      <div class="label">Godina tradicije</div>
+    </div>
+    <div class="hstat-divider"></div>
+    <div class="hstat">
+      <div class="num"><span id="countRank">3</span></div>
+      <div class="label">Rang u Petrčanima</div>
+    </div>
+    <div class="hstat-divider"></div>
+    <div class="hstat">
+      <div class="num"><span id="countRev" data-target="154">154</span></div>
+      <div class="label">Recenzija gostiju</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── HERITAGE TIMELINE ─────────────────────────────────── -->
+<section class="section-pad" id="tradicija">
+  <div class="wrap">
+    <div class="tl-head reveal">
+      <span class="eyebrow">Od 1989. do danas</span>
+      <h2>Generacije uz isti stol.</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="yr">1989</div>
+        <div class="body">
+          <h3>Otvaranje konobe</h3>
+          <p>Obitelj Pjero otvara malu konobu u Petrčanima. Prvih nekoliko stolova, svježa riba i recepti koje nitko nije zapisivao — jer su se pamtili napamet.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="yr">1990s</div>
+        <div class="body">
+          <h3>Prve generacije stalnih gostiju</h3>
+          <p>Konoba postaje omiljeno okupljalište mještana i prvih turista. Ispod peke i riba s gradela — uvijek svježe, uvijek dalmatinski.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="yr">2000s</div>
+        <div class="body">
+          <h3>Tradicija se prenosi</h3>
+          <p>Sljedeća generacija preuzima kuhinju. Recepti ostaju isti, ali ljubav prema poslu ostaje još dublja. Stol uz bor i more — nepromjenjiv.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="yr">2010s</div>
+        <div class="body">
+          <h3>Gosti iz cijele Europe</h3>
+          <p>Petrčane privlače sve više gostiju — iz Austrije, Njemačke, Češke. Konoba Pjero postaje njihovo stalno mjesto. Djeca gostiju sada dolaze sa svojom djecom.</p>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="yr">Danas</div>
+        <div class="body">
+          <h3>35 godina — i još uvijek isti miris</h3>
+          <p>Rangirana kao #3 od 18 restorana u Petrčanima, s 154 recenzije. No za nas je važnija jedna jedina stvar — da gosti odu siti i veseli, s osmijehom koji obećava povratak.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── QUOTE ──────────────────────────────────────────────── -->
+<div class="quote-sec">
+  <blockquote class="reveal">"Trideset i pet godina. Ista riba. Isti bor. Isti osmijeh."</blockquote>
+  <p class="by reveal">— Obitelj Pjero · Petrčane · od 1989.</p>
+</div>
+
+<!-- ─── MENU ──────────────────────────────────────────────── -->
+<section class="section-pad alt" id="jelovnik">
+  <div class="wrap">
+    <div class="olive-rule reveal" aria-hidden="true">
+      <span></span>
+      <svg viewBox="0 0 54 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27 2C20 2 8 8 2 8C8 8 20 14 27 14C34 14 46 8 52 8C46 8 34 2 27 2Z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+      </svg>
+      <span></span>
+    </div>
+    <div class="menu-head">
+      <span class="eyebrow reveal">Jelovnik</span>
+      <h2 class="reveal">Svježe, domaće,<br><em style="font-style:italic;color:var(--olive)">sezonski.</em></h2>
+      <p class="sub reveal">Bez zamrzavanja. Ponuda prati ulov i godišnje doba.</p>
+    </div>
+    <div class="menu-cols">
+      <div class="reveal">
+        <div class="menu-category">
+          <h3>Riba &amp; plodovi mora</h3>
+          <div class="m-item">
+            <div class="t">Riba s gradela <em>na drveni ugljen</em></div>
+            <div class="d">Brancin, orada, zubatac — svježi ulov dana</div>
+          </div>
+          <div class="m-item">
+            <div class="t">Lignje na žaru</div>
+            <div class="d">Cijele, sa začinskim biljem i maslinovim uljem</div>
+          </div>
+          <div class="m-item">
+            <div class="t">Školjke <em>dalmatinski</em></div>
+            <div class="d">Dagnje i kamenice — kuhane ili sirove</div>
+          </div>
+          <div class="m-item">
+            <div class="t">Brujet od ribe</div>
+            <div class="d">Polako kuhan s kaparicom, češnjakom i bijelim vinom</div>
+          </div>
+          <div class="m-item">
+            <div class="t">Hobotnica ispod peke</div>
+            <div class="d">Osam sati strpljenja — dalmatinski klasik</div>
+          </div>
+        </div>
+        <div class="menu-category">
+          <h3>Predjela</h3>
+          <div class="m-item">
+            <div class="t">Pršut i sir</div>
+            <div class="d">Dalmatinski pršut, paški sir, masline</div>
+          </div>
+          <div class="m-item">
+            <div class="t">Domaći kruh s uljem</div>
+            <div class="d">Pečen u kući, s lokalnim maslinovim uljem</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="menu-category">
+          <h3>Ispod peke &amp; s roštilja</h3>
+          <div class="m-item">
+            <div class="t">Janjetina ispod peke</div>
+            <div class="d">Sezonski specijalitet — naručite dan ranije</div>
+          </div>
+          <div class="m-item">
+            <div class="t">Janje s ražnja</div>
+            <div class="d">Pečeno na otvorenoj vatri, polako i strpljivo</div>
+          </div>
+          <div class="m-item">
+            <div class="t">Mješano meso</div>
+            <div class="d">Ćevapi, kotleti i teletina — s roštilja</div>
+          </div>
+        </div>
+        <div class="menu-category">
+          <h3>Domaće i tradicijsko</h3>
+          <div class="m-item">
+            <div class="t">Pašticada <em>s njokima</em></div>
+            <div class="d">Dalmatinska klasika, majčin recept</div>
+          </div>
+          <div class="m-item">
+            <div class="t">Maneštra</div>
+            <div class="d">Miješano povrće i svinjsko meso, kuhano polako</div>
+          </div>
+          <div class="m-item">
+            <div class="t">Rožata &amp; fritule</div>
+            <div class="d">Domaći dalmatinski deserti, po sezoni</div>
+          </div>
+        </div>
+        <div class="menu-category">
+          <h3>Vina &amp; pića</h3>
+          <div class="m-item">
+            <div class="t">Vino točeno <em>domaće</em></div>
+            <div class="d">Bijelo i crno, s lokalnog vinograda</div>
+          </div>
+          <div class="m-item">
+            <div class="t">Gemišt, pivo, sokovi, voda</div>
+            <div class="d"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="menu-foot reveal">Ponuda se mijenja prema ulovu i sezoni · Za specijalitete nazovite dan ranije</p>
+  </div>
+</section>
+
+<!-- ─── PETRČANE ───────────────────────────────────────────── -->
+<section class="section-pad" id="petrcane" style="padding:0;">
+  <div class="loc-split">
+    <div class="loc-img-side reveal">
+      <img src="https://loremflickr.com/700/560/pine,cove,beach,petrcane,adriatic?lock=2005" alt="Petrčane — borovi i Jadran" />
+    </div>
+    <div class="loc-text-side">
+      <span class="eyebrow reveal">Gdje smo</span>
+      <h2 class="reveal">Petrčane — <em>između Zadra i Nina.</em></h2>
+      <p class="reveal">Petrčane su tiho mjestašce na poluotoku između Zadra i Nina. Borova šuma, šljunčane uvale, tirkizno more i miris slane vode — to je Petrčane.</p>
+      <p class="reveal">Konoba Pjero je minutu hoda od plaže. Dođite mokri s mora, sjednite u hladovinu i naručite što je jutros ulovljeno. Nema bolje formule za dalmatinsko ljeto.</p>
+      <p class="reveal">Zadar je 13 km — ili 35 minuta brodičem ljeti.</p>
+      <a class="btn reveal" href="tel:+385958224816" style="margin-top:12px;align-self:flex-start;">
+        📞 +385 95 822 4816
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GALLERY ───────────────────────────────────────────── -->
+<section class="section-pad alt-3" id="galerija">
+  <div class="wrap">
+    <div class="gallery-head">
+      <span class="eyebrow reveal">Galerija</span>
+      <h2 class="reveal">Boje <em style="font-style:italic;color:var(--olive)">dalmatinskog ljeta.</em></h2>
+    </div>
+    <div class="gal-grid">
+      <figure class="gal-tall reveal">
+        <img src="https://loremflickr.com/440/610/old,photo,tavern,dalmatia?lock=2006" alt="Stara fotografija konobe" style="height:100%;"/>
+      </figure>
+      <figure class="reveal">
+        <img src="https://loremflickr.com/440/280/grilled,fish,adriatic?lock=2007" alt="Riba s gradela" />
+      </figure>
+      <figure class="reveal">
+        <img src="https://loremflickr.com/440/280/adriatic,sunset,dalmatia?lock=2008" alt="Zalazak sunca" />
+      </figure>
+      <figure class="gal-wide reveal">
+        <img src="https://loremflickr.com/900/320/pine,sea,beach,adriatic?lock=2009" alt="Borovi i more" style="height:320px;" />
+      </figure>
+      <figure class="reveal">
+        <img src="https://loremflickr.com/440/280/peka,lamb,dalmatian,food?lock=2010" alt="Ispod peke" />
+      </figure>
+      <figure class="reveal">
+        <img src="https://loremflickr.com/440/280/shellfish,mussels,sea?lock=2011" alt="Školjke" />
+      </figure>
+      <figure class="reveal">
+        <img src="https://loremflickr.com/440/280/family,konoba,table?lock=2012" alt="Obiteljska atmosfera" />
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ─── KONTAKT ───────────────────────────────────────────── -->
+<section class="section-pad" id="kontakt">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="eyebrow reveal">Rezervacije &amp; kontakt</span>
+        <h2 class="reveal">Dođite za naš <em>stol.</em></h2>
+        <p class="reveal">Nazovite nas i rado ćemo rezervirati stol za vas i vašu obitelj. Za specijalitete kao što je janjetina ispod peke, naručite dan ranije.</p>
+        <a class="contact-tel reveal" href="tel:+385958224816">📞 +385 95 822 4816</a>
+        <p class="contact-note reveal">Bez e-maila. Nazovite ili jednostavno dođite.</p>
+        <div class="map-wrap reveal">
+          <iframe
+            src="https://maps.google.com/maps?q=Konoba+Pjero+Petrcane&output=embed"
+            loading="lazy"
+            title="Konoba Pjero, Petrčane"
+            aria-label="Google karta: Konoba Pjero, Petrčane">
+          </iframe>
+        </div>
+      </div>
+      <div class="contact-hours">
+        <h3 class="reveal">Radno vrijeme</h3>
+        <div class="hours-row reveal"><span>Ponedjeljak — Petak</span><span>11:00 — 23:00</span></div>
+        <div class="hours-row reveal"><span>Subota</span><span>11:00 — 23:30</span></div>
+        <div class="hours-row reveal"><span>Nedjelja</span><span>11:00 — 22:00</span></div>
+        <p class="hours-note reveal">Sezona: travanj — listopad</p>
+        <div style="margin-top:36px;padding-top:28px;border-top:1px solid var(--line);">
+          <p class="reveal" style="font-family:var(--font-display);font-size:17px;color:var(--stone);line-height:1.75;max-width:34ch;font-style:italic;">
+            "Uvijek ima mjesta za goste koji dođu s osmijehom — i dobrim apetitom."
+          </p>
+          <p class="reveal" style="margin-top:14px;font-size:12px;text-transform:uppercase;letter-spacing:0.2em;color:var(--olive-pale);">— Obitelj Pjero, 1989.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ─── FOOTER ────────────────────────────────────────────── -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand">Konoba <em>Pjero</em></div>
+        <p>Obiteljska dalmatinska konoba u Petrčanima. Od 1989. — iste ruke, iste recepture, isti osmijeh.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Stranica</h4>
+        <a href="#tradicija">Tradicija</a>
+        <a href="#jelovnik">Jelovnik</a>
+        <a href="#petrcane">Petrčane</a>
+        <a href="#galerija">Galerija</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <a href="tel:+385958224816">+385 95 822 4816</a>
+        <p>Petrčane, 23231</p>
+        <p>Zadarska županija</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2025 Konoba Pjero · Petrčane</span>
+      <span>Obiteljska tradicija od 1989. · 35+ godina</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── MOBILE RESERVE BAR ─────────────────────────────────── -->
+<div class="mobile-bar" aria-label="Rezerviraj stol">
+  <a href="tel:+385958224816">📞 Rezerviraj stol — +385 95 822 4816</a>
+</div>
+
+<!-- ─── SCRIPTS ───────────────────────────────────────────── -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  'use strict';
+
+  // ─── Lenis smooth scroll ───────────────────────────────
+  const lenis = new Lenis({
+    duration: 1.3,
+    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: 'vertical',
+    smoothWheel: true
+  });
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  lenis.on('scroll', ScrollTrigger.update);
+
+  // ─── Header scroll ─────────────────────────────────────
+  const header = document.getElementById('header');
+  ScrollTrigger.create({
+    start: 'top -60',
+    onToggle: self => header.classList.toggle('scrolled', self.isActive)
+  });
+
+  // ─── Hamburger ─────────────────────────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ─── Hero image subtle scale on scroll ─────────────────
+  document.querySelectorAll('.hero-grid figure').forEach((fig, i) => {
+    gsap.from(fig, {
+      opacity: 0, y: 30, duration: 0.9, ease: 'power3.out',
+      delay: 0.4 + i * 0.1
+    });
+  });
+
+  // ─── Hero top content reveal ───────────────────────────
+  gsap.from('.hero-top', { opacity: 0, y: 28, duration: 0.9, ease: 'power3.out', delay: 0.15 });
+
+  // ─── Count-up for heritage strip ──────────────────────
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function countUp(el, target, duration, prefix, suffix) {
+    if (reduced) { el.textContent = prefix + target + suffix; return; }
+    const start = Date.now();
+    const startVal = Math.max(0, target - Math.round(target * 0.18));
+    const tick = () => {
+      const elapsed = Date.now() - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = prefix + Math.round(startVal + (target - startVal) * ease) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  const countEls = {
+    countYear:  { target: 1989, duration: 1600, prefix: '', suffix: '' },
+    countYears: { target: 35,   duration: 1200, prefix: '', suffix: '' },
+    countRev:   { target: 154,  duration: 1400, prefix: '', suffix: '' }
+  };
+
+  let countFired = false;
+  ScrollTrigger.create({
+    trigger: '.heritage-strip',
+    start: 'top 80%',
+    once: true,
+    onEnter: () => {
+      if (countFired) return;
+      countFired = true;
+      Object.entries(countEls).forEach(([id, cfg]) => {
+        const el = document.getElementById(id);
+        if (el) countUp(el, cfg.target, cfg.duration, cfg.prefix, cfg.suffix);
+      });
+    }
+  });
+
+  // ─── Section reveals ──────────────────────────────────
+  if (!reduced) {
+    document.querySelectorAll('.reveal').forEach(el => {
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: 0.82, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 87%', once: true }
+      });
+    });
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  }
+
+  // ─── Timeline stagger ─────────────────────────────────
+  if (!reduced) {
+    document.querySelectorAll('.tl-item').forEach((item, i) => {
+      gsap.from(item, {
+        opacity: 0, x: -20, duration: 0.7, ease: 'power3.out',
+        scrollTrigger: { trigger: item, start: 'top 88%', once: true },
+        delay: i * 0.05
+      });
+    });
+  }
+
+  // ─── Smooth anchors ───────────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -80 }); }
+    });
+  });
+
+  // ─── Hero year dynamic ────────────────────────────────
+  const foundedYear = 1989;
+  const currentYear = new Date().getFullYear();
+  const years = currentYear - foundedYear;
+  const yearsEl = document.getElementById('yearsCount');
+  if (yearsEl) yearsEl.textContent = years;
+
+})();
+</script>
+</body>
+</html>
